@@ -35,7 +35,7 @@ export function CustomerBenefitsSection() {
       aria-labelledby="benefits-heading"
     >
       <div className="container">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <span className="eyebrow">PRODUCTS</span>
           <h2 id="benefits-heading">
             Why choose <em>Our Flowers</em>
@@ -46,13 +46,13 @@ export function CustomerBenefitsSection() {
             {benefits
               .filter((_, index) => index % 2 === 0)
               .map((benefit) => (
-                <article key={benefit.title}>
+                <article key={benefit.title} data-reveal>
                   <h3>{benefit.title}</h3>
                   <p>{benefit.description}</p>
                 </article>
               ))}
           </div>
-          <div className="customer-benefits__image">
+          <div className="customer-benefits__image" data-reveal data-image-reveal>
             <img
               src={flowerArt}
               alt="Pink, coral and cream floral wall arrangement"
@@ -65,7 +65,7 @@ export function CustomerBenefitsSection() {
             {benefits
               .filter((_, index) => index % 2 === 1)
               .map((benefit) => (
-                <article key={benefit.title}>
+                <article key={benefit.title} data-reveal>
                   <h3>{benefit.title}</h3>
                   <p>{benefit.description}</p>
                 </article>

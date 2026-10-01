@@ -41,7 +41,7 @@ a:focus-visible {
   outline-offset: 4px;
 }
 .site-shell {
-  overflow: hidden;
+  overflow: clip;
 }
 .container {
   width: min(1640px, calc(100% - 80px));
@@ -126,7 +126,7 @@ a:focus-visible {
   justify-content: space-between;
   gap: 32px;
   position: relative;
-  z-index: 20;
+  z-index: 1;
 }
 .brand {
   display: inline-flex;
@@ -817,7 +817,7 @@ a:focus-visible {
   display: grid;
   grid-template-columns: 1.7fr repeat(4, 1fr);
   gap: clamp(20px, 3vw, 52px);
-  padding-bottom: 232px;
+  padding-bottom: 124px;
 }
 .site-footer__intro p {
   max-width: 280px;

@@ -1,0 +1,195 @@
+:root {
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-quick: 260ms;
+  --motion-reveal: 760ms;
+}
+
+.site-header-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 248, 242, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 320ms var(--motion-ease);
+}
+
+.site-header-wrap--hidden {
+  transform: translate3d(0, -100%, 0);
+}
+
+.motion-enabled [data-reveal] {
+  transition:
+    opacity var(--motion-reveal) var(--motion-ease) var(--reveal-delay, 0ms),
+    transform var(--motion-reveal) var(--motion-ease) var(--reveal-delay, 0ms);
+}
+
+.motion-enabled [data-reveal]:not(.is-visible) {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+}
+
+.service-benefit:nth-child(2),
+.product-card:nth-child(2),
+.deal-card:nth-child(2),
+.collection-card:nth-child(2) {
+  --reveal-delay: 90ms;
+}
+
+.service-benefit:nth-child(3),
+.product-card:nth-child(3),
+.deal-card:nth-child(3),
+.collection-card:nth-child(3) {
+  --reveal-delay: 180ms;
+}
+
+[data-image-reveal] {
+  overflow: hidden;
+}
+
+.motion-enabled [data-image-reveal] img {
+  clip-path: inset(0 0 0 0);
+  transition:
+    clip-path 1050ms var(--motion-ease) 80ms,
+    transform 1200ms var(--motion-ease) 80ms;
+}
+
+.motion-enabled [data-reveal][data-image-reveal]:not(.is-visible) img,
+.motion-enabled [data-reveal]:not(.is-visible) [data-image-reveal] img {
+  clip-path: inset(0 0 100% 0);
+  transform: scale(1.055);
+}
+
+@media (hover: hover) {
+  .product-card:hover .product-card__image img,
+  .deal-card:hover .deal-card__image img,
+  .collection-card:hover img {
+    transform: scale(1.025);
+  }
+}
+
+.hero__line {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.motion-enabled .hero__line > span {
+  display: inline-block;
+  animation: hero-line-in 1100ms var(--motion-ease) both;
+}
+
+.motion-enabled .hero__line:nth-child(2) > span { animation-delay: 100ms; }
+.motion-enabled .hero__line:nth-child(3) > span { animation-delay: 200ms; }
+
+.motion-enabled .hero__eyebrow,
+.motion-enabled .hero__copy p,
+.motion-enabled .hero__copy > .button {
+  animation: hero-content-in 900ms var(--motion-ease) both;
+}
+
+.motion-enabled .hero__eyebrow { animation-delay: 80ms; }
+.motion-enabled .hero__copy p { animation-delay: 360ms; }
+.motion-enabled .hero__copy > .button { animation-delay: 480ms; }
+
+.hero__image-motion {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: translate3d(0, var(--hero-parallax, 0px), 0);
+}
+
+.motion-enabled .hero__image-motion img {
+  animation: hero-image-in 1300ms var(--motion-ease) both;
+}
+
+@keyframes hero-line-in {
+  from { opacity: 0; transform: translate3d(0, 105%, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes hero-content-in {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes hero-image-in {
+  from { opacity: 0; transform: scale(1.035); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.button--primary,
+.deal-card__bottom button {
+  background-image: linear-gradient(#f7838a, #f7838a);
+  background-repeat: no-repeat;
+  background-size: 0 100%;
+  transition:
+    background-size 300ms var(--motion-ease),
+    transform var(--motion-quick) var(--motion-ease);
+}
+
+.button--primary:hover,
+.button--primary:focus-visible,
+.deal-card__bottom button:hover,
+.deal-card__bottom button:focus-visible {
+  background-color: #ffa3a3;
+  background-image: linear-gradient(#f7838a, #f7838a);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.site-nav a,
+.site-footer__grid nav a {
+  position: relative;
+}
+
+.site-nav a::after,
+.site-footer__grid nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--motion-quick) var(--motion-ease);
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after,
+.site-footer__grid nav a:hover::after,
+.site-footer__grid nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { scroll-behavior: auto; }
+  .site-header-wrap,
+  .motion-enabled [data-reveal],
+  .motion-enabled [data-image-reveal] img,
+  .button--primary,
+  .deal-card__bottom button,
+  .site-nav a::after,
+  .site-footer__grid nav a::after {
+    transition: none;
+  }
+  .site-header-wrap--hidden { transform: none; }
+  .motion-enabled [data-reveal]:not(.is-visible) { opacity: 1; transform: none; }
+  .motion-enabled [data-reveal][data-image-reveal]:not(.is-visible) img,
+  .motion-enabled [data-reveal]:not(.is-visible) [data-image-reveal] img { clip-path: none; transform: none; }
+  .motion-enabled .hero__line > span,
+  .motion-enabled .hero__eyebrow,
+  .motion-enabled .hero__copy p,
+  .motion-enabled .hero__copy > .button,
+  .motion-enabled .hero__image-motion img { animation: none; }
+  .product-card:hover .product-card__image img,
+  .deal-card:hover .deal-card__image img,
+  .collection-card:hover img { transform: none; }
+}
+
+@media (hover: none) {
+  .product-card:hover .product-card__image img { transform: none; }
+}

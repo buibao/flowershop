@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import logo from "../../assets/design/ion-flower-sharp-1.svg";
 import { formatPrice, products, type Product } from "../../data/catalog";
+import { usePageMotion } from "../../motion/pageMotion";
 import { FloralHeroSection } from "./sections/FloralHeroSection/FloralHeroSection";
 import { ServiceBenefitsSection } from "./sections/ServiceBenefitsSection/ServiceBenefitsSection";
 import { TopSellingProductsSection } from "./sections/TopSellingProductsSection/TopSellingProductsSection";
@@ -36,7 +37,31 @@ export function Home() {
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [notice, setNotice] = useState("");
+  const [headerHidden, setHeaderHidden] = useState(false);
   const closeCartRef = useRef<HTMLButtonElement>(null);
+
+  usePageMotion();
+
+  useEffect(() => {
+    let previousY = window.scrollY;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const currentY = window.scrollY;
+      if (currentY < 100) setHeaderHidden(false);
+      else if (currentY - previousY > 6) setHeaderHidden(true);
+      else if (previousY - currentY > 6) setHeaderHidden(false);
+      previousY = currentY;
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
 
   useEffect(() => {
     if (!cartOpen) return;
@@ -104,6 +129,10 @@ export function Home() {
 
   return (
     <div id="home" className="site-shell">
+      <div
+        className={`site-header-wrap${headerHidden && !menuOpen && !cartOpen ? " site-header-wrap--hidden" : ""}`}
+        onFocusCapture={() => setHeaderHidden(false)}
+      >
       <header className="site-header container">
         <a className="brand" href="#home" aria-label="Bkalp Design home">
           <img src={logo} alt="" />
@@ -161,6 +190,7 @@ export function Home() {
           </button>
         </div>
       </header>
+      </div>
 
       <main>
         <FloralHeroSection />
