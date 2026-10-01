@@ -23,7 +23,7 @@ export function ClientTestimonialsSection() {
         aria-hidden="true"
       />
       <div className="container">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <span className="eyebrow">TESTIMONIALS</span>
           <h2 id="testimonials-heading">
             What our <em>Clients Say</em>
@@ -39,12 +39,12 @@ export function ClientTestimonialsSection() {
           src={quote}
           alt=""
         />
-        <blockquote>
+        <blockquote data-reveal>
           “The flowers were absolutely beautiful and arrived just as pictured.
           The colors, the details, and the care in the arrangement made such a
           lovely gift.”
         </blockquote>
-        <div className="testimonials__meta">
+        <div className="testimonials__meta" data-reveal>
           <div>
             <strong>Bkalp Design</strong>
             <span>Happy Customer</span>

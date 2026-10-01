@@ -14,7 +14,7 @@ export function TopSellingProductsSection({
       className="top-products section-pad container"
       aria-labelledby="products-heading"
     >
-      <div className="section-heading">
+      <div className="section-heading" data-reveal>
         <span className="eyebrow">PRODUCTS</span>
         <h2 id="products-heading">
           This month’s top selling <em>Product</em>

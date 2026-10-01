@@ -57,7 +57,7 @@ export function BestCollectionsSection() {
       aria-labelledby="collections-heading"
     >
       <div className="container">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <span className="eyebrow">Collection</span>
           <h2 id="collections-heading">
             Our Best <em>Collections</em>
@@ -71,7 +71,7 @@ export function BestCollectionsSection() {
             aria-label="Flower collections"
           >
             {collections.map((collection) => (
-              <div className="collection-card" key={collection.alt}>
+              <div className="collection-card" key={collection.alt} data-reveal data-image-reveal>
                 <img src={collection.image} alt={collection.alt} />
               </div>
             ))}

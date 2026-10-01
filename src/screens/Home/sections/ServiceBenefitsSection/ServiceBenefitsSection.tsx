@@ -27,7 +27,7 @@ export function ServiceBenefitsSection() {
       aria-label="Service benefits"
     >
       {benefits.map((benefit) => (
-        <article key={benefit.title} className="service-benefit">
+        <article key={benefit.title} className="service-benefit" data-reveal>
           <img src={benefit.image} alt="" />
           <div>
             <h2>{benefit.title}</h2>

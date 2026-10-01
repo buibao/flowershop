@@ -6,8 +6,8 @@ type Props = { product: Product; onAdd: (product: Product) => void };
 
 export function ProductCard({ product, onAdd }: Props) {
   return (
-    <article className="product-card">
-      <div className="product-card__image">
+    <article className="product-card" data-reveal>
+      <div className="product-card__image" data-image-reveal>
         <span className="product-card__shape" aria-hidden="true" />
         <img src={product.image} alt={product.alt} />
         <button

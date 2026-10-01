@@ -28,8 +28,8 @@ function DealCard({
   onAdd: (product: Product) => void;
 }) {
   return (
-    <article className="deal-card">
-      <div className="deal-card__image">
+    <article className="deal-card" data-reveal>
+      <div className="deal-card__image" data-image-reveal>
         <span aria-hidden="true" />
         <img src={product.image} alt={product.alt} />
       </div>
@@ -86,7 +86,7 @@ export function DailyOffersSection({
         aria-hidden="true"
       />
       <div className="container">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <span className="eyebrow">OFFERS</span>
           <h2 id="offers-heading">Deal of the day</h2>
           <div
